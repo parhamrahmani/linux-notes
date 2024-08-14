@@ -1,13 +1,29 @@
-# linux notes
+# Linux Learning Notes
 
-In this repository i am gathering markdown notes on learning linux commands and concepts. These notes are my personal notes and it is intended to organize the whole learning material in a meaningful strcuture.
+In this repository i am gathering markdown notes on learning linux commands and concepts. These notes are my personal notes and it is intended to organize the whole learning path in a meaningful strcuture.
 
 Feel free to add notes or correct any mistakes.
 
+
+
 ### Table of Contents
-- [Linux Fundamentals](linux-fundamentals) - This directory contains notes on basic linux commands and concepts.
-   - [Basic Commands](linux-fundamentals/BasicCommands.md) - Summary of basic linux commands, that used in day to day operations.
-   - [Linux File Systems](linux-fundamentals/LinuxFileSystems.md) - A very brief overview of linux file systems and its hierarchy.
-   - [Essential File Management](linux-fundamentals/EssentialFileManagement.md) - How to use ``--help`` and ``man`` to get help on commands, and how to use wildcards, flags, etc to make, copy, move, and remove files and directories.
-   - 
-   
+- #### [Linux Fundamentals](1-linux-fundementals)
+  - [Basics](1-linux-fundementals/1-basics)
+     - [Basic Commands](1-linux-fundementals/1-basics/1-FirstBasics.md) - Summary of basic linux commands, that used in day to day operations.
+     - [Using Manauls and getting help with commands](1-linux-fundementals/1-basics/2-UsingManAndHelp.md) - How to use `man`, `--help` and `pinfo` to get help with commands.
+   - [Basic File Management](1-linux-fundementals\2-basic-file-management)
+     - [Linux File Systems](1-linux-fundementals\2-basic-file-management\3-LinuxFileSystems.md) - A very brief overview of linux file systems and its hierarchy.
+     - [Essential File Management](1-linux-fundementals\2-basic-file-management\4-EssentialFileManagement.md) - How to use cp,mv,rm, etc. with wildcards, flags, etc. to do essential file management tasks.
+     - [Example Task](1-linux-fundementals\2-basic-file-management\basic-file-mgmt-examples.md) - an example task to practice basic file management tasks.
+   - [Advanced File Management](1-linux-fundamentals/3-advanced-file-management)
+     - [Advanced File Management](1-linux-fundementals\3-advanced-file-management\5-AdvancedFileManagementTools.md)
+- #### [Linux Bash Scripting](linux-bash-scripting)
+    - [Bash Scripting Learning Notes](linux-bash-scripting/1-bash-scripting-notes) - This directory contains notes on bash scripting concepts and examples.
+          1. [Basics](linux-bash-scripting/1-bash-scripting-notes/1(Basics).md)
+          2. [Conditional Statements, Branching and Looping](linux-bash-scripting/1-bash-scripting-notes/2-ConditionalStatementsBranchingLooping.md)
+          3. [Environment Variables](linux-bash-scripting/1-bash-scripting-notes/3-EnivromentVariables.md)
+          4. [Functions](linux-bash-scripting/1-bash-scripting-notes/4-Functions.md)
+          5. [File Operations](linux-bash-scripting/1-bash-scripting-notes/5-FileOperations.md)
+          6. [Sleep and Process Management](linux-bash-scripting/1-bash-scripting-notes/6-SleepProcessManagement.md)
+          7. [Interactive Scripts](linux-bash-scripting/1-bash-scripting-notes/7-InteractiveScripts.md)
+   - [Example Scripts](linux-bash-scripting/examples) - This directory contains example scripts that are created while learning bash scripting.
