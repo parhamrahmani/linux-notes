@@ -1,6 +1,6 @@
 # Linux Learning Notes
 
-In this repository i am gathering markdown notes on learning linux commands and concepts. These notes are my personal notes and it is intended to organize the whole learning path in a meaningful strcuture.
+In this repository i am gathering markdown notes on learning linux fundementals and concepts. These notes are my personal notes and it is intended to organize the whole learning path in a meaningful strcuture.
 
 Feel free to add notes or correct any mistakes.
 
