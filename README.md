@@ -16,7 +16,7 @@ Feel free to add notes or correct any mistakes.
      - [Essential File Management](1-linux-fundementals/2-basic-file-management/4-EssentialFileManagement.md) - How to use cp,mv,rm, etc. with wildcards, flags, etc. to do essential file management tasks.
      - [Example Task](1-linux-fundementals/2-basic-file-management/basic-file-mgmt-examples.md) - an example task to practice basic file management tasks.
    - [Advanced File Management](1-linux-fundamentals/3-advanced-file-management)
-     - [Advanced File Management](1-linux-fundementals\3-advanced-file-management\5-AdvancedFileManagementTools.md)
+     - [Hard Links and Symbolic Links](1-linux-fundementals\3-advanced-file-management\5-HardLinksAndSymbolicLinks.md)
 - #### [Linux Bash Scripting](linux-bash-scripting)
     - [Bash Scripting Learning Notes](linux-bash-scripting/1-bash-scripting-notes) - This directory contains notes on bash scripting concepts and examples.
         - [Basics](linux-bash-scripting/1-bash-scripting-notes/1(Basics).md)
