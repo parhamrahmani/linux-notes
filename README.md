@@ -8,7 +8,7 @@ Feel free to add notes or correct any mistakes.
 
 ### Table of Contents
 - #### [Linux Fundamentals](1-linux-fundementals)
-  - [Basics](1-linux-fundementals/1-basics)
+  - [Introduction](1-linux-fundementals/1-basics)
      - [Core Basics and Commands](1-linux-fundementals/1-basics/1-FirstBasics.md) - Summary of basic linux commands, that used in day to day operations.
      - [Using Manauls and getting help with commands](1-linux-fundementals/1-basics/2-UsingManAndHelp.md) - How to use `man`, `--help` and `pinfo` to get help with commands.
    - [Basic File Management](1-linux-fundementals/2-basic-file-management)
@@ -17,8 +17,10 @@ Feel free to add notes or correct any mistakes.
      - [Example Task](1-linux-fundementals/2-basic-file-management/basic-file-mgmt-examples.md) - an example task to practice basic file management tasks.
    - [Advanced File Management](1-linux-fundementals/3-advanced-file-management)
      - [Hard Links and Symbolic Links](1-linux-fundementals/3-advanced-file-management/5-HardLinksAndSymbolicLinks.md) - Differences between Hard Links and Symbolic Links, how to make thema and why to use them
-     - [Using `Find`](1-linux-fundementals/3-advanced-file-management/6-usingFind.md)
-- #### [Linux Bash Scripting](linux-bash-scripting)
+     - [Using `find`, `locate` and `which`](1-linux-fundementals/3-advanced-file-management/6-usingFind.md)
+     - [Archiving and Managing File Compression](1-linux-fundementals\3-advanced-file-management\7-archiving.md) 
+     - [Mounting and Unmounting Filesystems](1-linux-fundementals\3-advanced-file-management\8-mountfilesys.md)
+- #### [Linux Bash Scripting Basics](linux-bash-scripting)
     - [Bash Scripting Learning Notes](linux-bash-scripting/1-bash-scripting-notes) - This directory contains notes on bash scripting concepts and examples.
         - [Basics](linux-bash-scripting/1-bash-scripting-notes/1(Basics).md)
         - [Conditional Statements, Branching and Looping](linux-bash-scripting/1-bash-scripting-notes/2-ConditionalStatementsBranchingLooping.md)
@@ -26,4 +28,4 @@ Feel free to add notes or correct any mistakes.
         - [File Operations](linux-bash-scripting/1-bash-scripting-notes/5-FileOperations.md)
         - [Sleep and Process Management](linux-bash-scripting/1-bash-scripting-notes/6-SleepProcessManagement.md)
         - [Interactive Scripts](linux-bash-scripting/1-bash-scripting-notes/7-InteractiveScripts.md)
-    - [Example Scripts](linux-bash-scripting/examples) - This directory contains example scripts that are created while learning bash scripting.
+    - [Example Scripts](linux-bash-scripting/examples) - This directory contains example scripts that are created while learning bash scripting. -> *has to be cleaned and updated*
