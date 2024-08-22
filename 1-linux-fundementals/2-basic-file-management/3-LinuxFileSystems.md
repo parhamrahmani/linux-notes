@@ -1,6 +1,6 @@
 ## Linux Filesystem
 
-![alt text](9ee1bb1e-32cf-4b6a-96ac-878f652ac53d_1200x1581.gif)
+![alt text](linuxfilesystemshier.drawio.png)
 
 - **/** - root directory
 - **/usr** - User programs
