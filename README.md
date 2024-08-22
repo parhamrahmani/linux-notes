@@ -18,8 +18,8 @@ Feel free to add notes or correct any mistakes.
    - [Advanced File Management](1-linux-fundementals/3-advanced-file-management)
      - [Hard Links and Symbolic Links](1-linux-fundementals/3-advanced-file-management/5-HardLinksAndSymbolicLinks.md) - Differences between Hard Links and Symbolic Links, how to make thema and why to use them
      - [Using `find`, `locate` and `which`](1-linux-fundementals/3-advanced-file-management/6-usingFind.md)
-     - [Archiving and Managing File Compression](1-linux-fundementals\3-advanced-file-management\7-archiving.md) 
-     - [Mounting and Unmounting Filesystems](1-linux-fundementals\3-advanced-file-management\8-mountfilesys.md)
+     - [Archiving and Managing File Compression](1-linux-fundementals/3-advanced-file-management/7-archiving.md) 
+     - [Mounting and Unmounting Filesystems](1-linux-fundementals/3-advanced-file-management/8-mountfilesys.md)
 - #### [Linux Bash Scripting Basics](linux-bash-scripting)
     - [Bash Scripting Learning Notes](linux-bash-scripting/1-bash-scripting-notes) - This directory contains notes on bash scripting concepts and examples.
         - [Basics](linux-bash-scripting/1-bash-scripting-notes/1(Basics).md)
