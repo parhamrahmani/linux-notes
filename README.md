@@ -16,7 +16,7 @@ In this repository i am gathering all stuff related to linux including markdown 
    - [Advanced File Management](1-linux-fundamentals/3-advanced-file-management)
      - [Hard Links and Symbolic Links](1-linux-fundementals/3-advanced-file-management/5-HardLinksAndSymbolicLinks.md)
      - [Searching files and directories](1-linux-fundementals\3-advanced-file-management\6-usingFind.md) - Using `find`, `which` and `locate` commands
-     - [Archiving and Compression](1-linux-fundementals\3-advanced-file-management\7-archiving.md) - archiving, compressing,making incremental backups, etc. using `tar`, `gzip`, `bzip2`, `xzip`, etc.
+     - [Archiving and Compression](1-linux-fundementals/3-advanced-file-management/7-archiving.md) - archiving, compressing,making incremental backups, etc. using `tar`, `gzip`, `bzip2`, `xzip`, etc.
   
 - #### [Linux Bash Scripting](linux-bash-scripting)
     - [Bash Scripting Learning Notes](linux-bash-scripting/1-bash-scripting-notes) - This directory contains notes on bash scripting concepts and examples.
@@ -28,6 +28,6 @@ In this repository i am gathering all stuff related to linux including markdown 
         - [Interactive Scripts](linux-bash-scripting/1-bash-scripting-notes/7-InteractiveScripts.md)
     - [Example Scripts](linux-bash-scripting/examples) - This directory contains example scripts that are created while learning bash scripting.
 - #### [Miscellaneous](misc)
-    - [Using zsh as Default Shell for Autocompletion,, Suggestions and Highlighting](misc\zsh-autocompleting.md)
+    - [Using zsh as Default Shell for Autocompletion,, Suggestions and Highlighting](misc/zsh-autocompleting.md)
     - [My XFCE Desktop Configuration](misc\xfce-config.md)
-    - [My Favorite Linux Distributions](misc\linux-distros.md)
+    - [My Favorite Linux Distributions](misc/linux-distros.md)
