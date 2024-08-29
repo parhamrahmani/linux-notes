@@ -28,6 +28,9 @@ sudo ln -s /var /tmp/files/symlinktovar
 `ln -s <target> <link-name>`
 - ###### let's check if the symbolic link is created
 ```bash
+ls -la /tmp/files
+```
+```
 total 12
  6641 drwxr-xr-x 3 USER USER 4096 Aug 29 13:33 .
 57346 drwxrwxrwt 6 root root 4096 Aug 29 13:32 ..
@@ -42,7 +45,6 @@ sudo tar -cvJf /tmp/homebackup.tar.xz /home
 ```bash
 ls -la /tmp
 ```
-***output:***
 ```bash
 total 12812
 drwxrwxrwt  6 root root     4096 Aug 29 13:47 .
@@ -60,7 +62,6 @@ sudo tar -xJf /tmp/homebackup.tar.xz -C tmp/archive
 ```bash
 ls -la /tmp/archive
 ```
-***output:***
 ```bash
 total 12
 drwxr-xr-x 3 USER USER 4096 Aug 29 13:55 .
