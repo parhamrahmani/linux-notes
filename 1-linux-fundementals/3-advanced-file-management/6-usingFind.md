@@ -77,7 +77,6 @@ This won't find the file because the database is not updated. To update the data
 sudo updatedb
 locate testfile.txt
 ```
-output:
 ```
 /home/user/testfile.txt
 ```
@@ -89,7 +88,6 @@ let's find the exact location of the `ls` command.
 ```bash
 which ls
 ```
-output:
 ```
 alias ls='ls --color=auto'
         /usr/bin/ls

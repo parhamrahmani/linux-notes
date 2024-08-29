@@ -24,7 +24,6 @@ cp /etc/hosts .
 ls -li hosts
 ```
 the `-i` option will show the inode number of the file.
-***output:***
 ```
 9201812 -rw-r--r--. 2 user user 155 Aug 24 16:46 hosts
 ```
@@ -33,10 +32,8 @@ Let's make a hard link to the file
 ```bash
 ln hosts hosts_hardlink
 ls -li hosts hosts_hardlink
-
 ```
 The inode number of the hard link will be the same as the original file. If we make changes to the original file, the changes will be reflected in the hard link as well.
-***output:***
 ```
 9201812 -rw-r--r--. 2 user user 155 Aug 21 16:46 hosts
 9201812 -rw-r--r--. 2 user user 155 Aug 21 16:46 hosts_hardlink
@@ -61,8 +58,6 @@ Now let's create a symbolic link to the file.
 ln -s hosts hosts_symlink
 ls -li hosts hosts_hardlink hosts_symlink
 ```
-
-***output:***
 ```
 9201812 -rw-r--r--. 2 user user 161 Aug 21 17:43 hosts
 9201812 -rw-r--r--. 2 user user 161 Aug 21 17:43 hosts_hardlink	
@@ -77,7 +72,6 @@ mkdir test
 mv hosts_symlink test
 ls -li test/hosts_symlink
 ```
-***output:***
 ```
 9201818 lrwxrwxrwx. 1 user user 5 Aug 21 17:48 test/hosts_symlink -> hosts
 ```
@@ -85,7 +79,6 @@ The link is not valid. The hosts_symlink -> hosts is in red color, which means t
 ```bash	
 cat test/hosts_symlink
 ```
-***output:***
 ```
 cat: test/hosts_symlink: No such file or directory
 ```
@@ -98,7 +91,6 @@ mv test/hosts_symlink .
 sudo mv hosts /home
 ls -li hosts hosts_hardlink hosts_symlink
 ```
-***output:***
 ```
 9201812 -rw-r--r--. 2 user user 161 Aug 21 17:43 hosts_hardlink
 9201818 lrwxrwxrwx. 1 user user   5 Aug 21 17:48 hosts_symlink -> hosts
@@ -107,7 +99,6 @@ The symbolic link is broken as we can see
 ```bash
 cat hosts_symlink
 ```
-***output:***
 ```
 cat: hosts_symlink: No such file or directory
 ```
@@ -119,7 +110,6 @@ when we roll back the changes, the symlink will be valid again.
 sudo mv /home/hosts .
 ls -li hosts hosts_hardlink hosts_symlink
 ```
-***output:***
 ```
 9201812 -rw-r--r--. 2 user user 161 Aug 21 17:43 hosts
 9201812 -rw-r--r--. 2 user user 161 Aug 21 17:43 hosts_hardlink
@@ -139,11 +129,10 @@ After changes in linux file structure, the bin directory was moved to /usr/bin. 
 ```bash
 ls -li /bin
 ```
-you will see the bin is a symbolic link to /usr/bin
-***output:***
 ```
 113608 lrwxrwxrwx. 1 root root 7 Jun 25 16:23 /bin -> usr/bin
 ```
+you see the bin is a symbolic link to /usr/bin
 
 ## Cheat Sheet
 | Command | Description | Example |

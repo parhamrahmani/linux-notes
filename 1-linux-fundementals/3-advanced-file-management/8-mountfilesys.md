@@ -25,7 +25,6 @@ Since we are using a CentOS with a desktop environment, the USB drive is mounted
 ```bash
 lsblk
 ```
-output:
 ```
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sda      8:0    0 238.5G  0 disk
@@ -54,7 +53,6 @@ sudo mount /dev/sdb /mnt/usb
 ```bash
 ls /mnt/usb
 ```
-output:
 ```
 hosts
 ```
@@ -66,7 +64,6 @@ now check the USB drive.
 ```bash
 ls /mnt/usb
 ```
-output:
 ```
 hosts Downloads
 ```
@@ -75,7 +72,6 @@ The downloads directory is copied to the USB drive. (not on sda2 i.e.)
 ```bash
 lsblk
 ```
-output:
 ```
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sda      8:0    0 238.5G  0 disk
@@ -97,7 +93,6 @@ now see what is in the mount point.
 ```bash
 ls /mnt/usb
 ```
-output:
 ```
 hgfs
 ```

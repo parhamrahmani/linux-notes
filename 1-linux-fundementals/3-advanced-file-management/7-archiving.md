@@ -89,13 +89,15 @@ Firstly we archive the files and directories and then compress the archive file.
         - the split files will be created in the `/home/test/backup/` directory.
           ###### Example output
           ```bash
-           test@test/backup > sudo tar -cJ /etc | split --verbose -b 100K --numeric-suffixes=1 - /home/test/backup/backup.tar.xz.part_
+          sudo tar -cJ /etc | split --verbose -b 100K --numeric-suffixes=1 - /home/test/backup/backup.tar.xz.part_
+          ```
+          ```
             tar: Removing leading `/' from member names
             creating file '/home/test/backup/backup.tar.xz.part_01'
             creating file '/home/test/backup/backup.tar.xz.part_02'
             creating file '/home/test/backup/backup.tar.xz.part_03'
             creating file '/home/test/backup/backup.tar.xz.part_04'
-          ```
+           ```
 ##### Incremental backups
 Let's make an initial full backup of the /etc directory.
 ```bash
