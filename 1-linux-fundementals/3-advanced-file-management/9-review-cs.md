@@ -22,13 +22,27 @@
 | `sudo find /etc -type f -exec grep -l "root" {} \;` | Find files in `/etc` containing the string "root". | Using `grep` with `find` |
 | `sudo find /etc/ -name '*.conf' -type f -exec cp {} /tmp/test \;` | Find files in `/etc` ending with `.conf` and copy them to `/tmp/test`. | Using wildcards with `find` and `-exec` option |
 | `sudo find /etc/ -name '*' -type f \| xargs grep "127.0.0.1" 2>/dev/null` | Find files in `/etc` and search for "127.0.0.1" within them, suppressing error messages. | Using `xargs` with `grep`, ignoring errors with `2>/dev/null` |
+### Others
+| Command | Description |
+|---------|-------------|
+| `which` | Find the location of a command. |
+| `locate` | Find files by name. |
+| `updatedb` | Update the database used by `locate`. |
+
 ## Archiving and Compression
+### compression utilities
+| Command | Description |
+|---------|-------------|
+| `gzip` | Compress files. Fast but not the best compression |
+|`bzip2` | Compress files. Slower but better compression |
+| `xzip` | Compress files. Slowest but best compression |
+### `tar` Command cheat sheet
 | Option | Description | Command |
 |--------|-------------|---------|
 | -cjvf | Create a new archive with bzip2 compression | `tar -cjvf archive.tar.bz2 file1 file2 file3` |
 | -xjvf | Extract files from an archive with bzip2 compression | `tar -xjvf archive.tar.bz2` |
 | -cJvf | Create a new archive with xzip compression | `tar -cJvf archive.tar.xz file1 file2 file3` |
-| -xJvf | Extract files from an archive with xzip compression | `tar -xJvf archive.tar.xz` |
+| -xJf | Extract files from an archive with xzip compression | `tar -xJf archive.tar.xz` |
 | --exclude | Exclude files and directories | `tar -cvf /tmp/archive.tar /home --exclude=/home/user/temp` |
 | -rvf | Append files to an existing archive | `tar -rvf /tmp/archive.tar /home/user/test` |
 | -dvf | Verify the archive | `tar -dvf /tmp/archive.tar` |
