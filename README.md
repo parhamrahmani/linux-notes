@@ -21,13 +21,9 @@ In this repository i am gathering all stuff related to linux including markdown 
      - [Review of the section and cheat sheet](1-linux-fundementals/3-advanced-file-management/9-review-cs.md) - A review of the section and a cheat sheet.
      - [Example Task](1-linux-fundementals/3-advanced-file-management/example-advflmgmt.md) - An example task to practice advanced file management tasks.
     - [Text File Editing](1-linux-fundementals/4-working-with-texts)
-      - [Text Editors](1-linux-fundementals/4-working-with-texts/10-TextEditors.md) - A brief overview of text editors in linux. `nano`, `gedit`, `vi`, `vim`, etc.
-      - [Using `vim`](1-linux-fundementals/4-working-with-texts/11-Vim.md) - Basic vim commands and concepts.
-      - [Browsing and Searching Text Files](1-linux-fundementals/4-working-with-texts/12-BrowsingAndSearchingTextFiles.md) - How to browse and search text files.
-      - [Using head and tail](1-linux-fundementals/4-working-with-texts/13-HeadAndTail.md)
-      - [using `cat`, `tac`](1-linux-fundementals/4-working-with-texts/14-CatTac.md)
-      - [Using `grep`](1-linux-fundementals/4-working-with-texts/15-Grep.md)
-      - [Review of the section and cheat sheet](1-linux-fundementals/4-working-with-texts/16-review-cs-txt.md)
+      - [Text Editors](1-linux-fundementals/4-working-with-texts/10-texted-vivimnanogedit.md) - A brief overview of text editors in linux. `nano`, `gedit`, `vi`, `vim`. Including Using ``vim``/``vi`` at basic level.
+      - [Browsing and Searching Text Files](1-linux-fundementals/4-working-with-texts/11-BrowsingAndSearchingTextFiles.md) - How to browse and search text files using `more`, `less`, `head`, `tail`, `cat`, `tac`, `grep`, etc. 
+      - [Review of the section and cheat sheet](1-linux-fundementals/4-working-with-texts/12-review-cs-txt.md)
       - [Example Task](1-linux-fundementals/4-working-with-texts/example-textedit.md) - An example task to practice text file editing.
 - #### [Linux Bash Scripting](linux-bash-scripting)
     - [Bash Scripting Learning Notes](linux-bash-scripting/1-bash-scripting-notes) - This directory contains notes on bash scripting concepts and examples.
