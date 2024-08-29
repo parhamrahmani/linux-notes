@@ -144,3 +144,10 @@ you will see the bin is a symbolic link to /usr/bin
 ```
 113608 lrwxrwxrwx. 1 root root 7 Jun 25 16:23 /bin -> usr/bin
 ```
+
+## Cheat Sheet
+| Command | Description | Example |
+| --- | --- | --- |
+| `ln` | create a hard link to a file `ln <target> <link_name>` | `ln hosts hosts_hardlink` |
+| `ln -s` | create a symbolic link to a file `ln -s <target> <link_name>` | `ln -s hosts hosts_symlink` |
+| `ls -li` | list files with inode number | `ls -li hosts hosts_hardlink hosts_symlink` |
