@@ -15,9 +15,18 @@ In this repository i am gathering all stuff related to linux including markdown 
      - [Example Task](1-linux-fundementals/2-basic-file-management/basic-file-mgmt-examples.md) - an example task to practice basic file management tasks.
    - [Advanced File Management](1-linux-fundamentals/3-advanced-file-management)
      - [Hard Links and Symbolic Links](1-linux-fundementals/3-advanced-file-management/5-HardLinksAndSymbolicLinks.md)
-     - [Searching files and directories](1-linux-fundementals\3-advanced-file-management\6-usingFind.md) - Using `find`, `which` and `locate` commands
+     - [Searching files and directories](1-linux-fundementals/3-advanced-file-management/6-usingFind.md) - Using `find`, `which` and `locate` commands
      - [Archiving and Compression](1-linux-fundementals/3-advanced-file-management/7-archiving.md) - archiving, compressing,making incremental backups, etc. using `tar`, `gzip`, `bzip2`, `xzip`, etc.
-  
+     - [Mounting and Filesystems](1-linux-fundementals/3-advanced-file-management/8-mountfilesys.md) - mounting and unmounting devices, checking disk space, etc.
+     - [Review of the section and cheat sheet](1-linux-fundementals/3-advanced-file-management/9-review-cs.md) - A review of the section and a cheat sheet.
+    - [Text File Editing](1-linux-fundementals/4-working-with-texts)
+      - [Text Editors](1-linux-fundementals/4-working-with-texts/10-TextEditors.md) - A brief overview of text editors in linux. `nano`, `gedit`, `vi`, `vim`, etc.
+      - [Using `vim`](1-linux-fundementals/4-working-with-texts/11-Vim.md) - Basic vim commands and concepts.
+      - [Browsing and Searching Text Files](1-linux-fundementals/4-working-with-texts/12-BrowsingAndSearchingTextFiles.md) - How to browse and search text files.
+      - [Using head and tail](1-linux-fundementals/4-working-with-texts/13-HeadAndTail.md)
+      - [using `cat`, `tac`](1-linux-fundementals/4-working-with-texts/14-CatTac.md)
+      - [Using `grep`](1-linux-fundementals/4-working-with-texts/15-Grep.md)
+      - [Review of the section and cheat sheet](1-linux-fundementals/4-working-with-texts/16-review-cs-txt.md)
 - #### [Linux Bash Scripting](linux-bash-scripting)
     - [Bash Scripting Learning Notes](linux-bash-scripting/1-bash-scripting-notes) - This directory contains notes on bash scripting concepts and examples.
         - [Basics](linux-bash-scripting/1-bash-scripting-notes/1(Basics).md)
