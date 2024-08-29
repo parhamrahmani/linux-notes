@@ -144,18 +144,16 @@ Then we can update the archive like this:
     ```
     - This compresses the updated tar file to its original location using xz directly, then removes the temporary uncompressed file.
     - XZ_OPT=-9 or -9 is used to set the compression level to 9. The default is 6. The higher the number, the better the compression but slower the process. The compression level can be set from 0 to 9.
-
+##### timing the compression
+Use the `time` command to time the compression process. This will show the time taken to compress the archive.
+```bash
+time tar -cJf /tmp/full-backup.tar.xz /etc
+```
 
             
 ### `tar` Cheat Sheet
-| Option | Descriptoin | Example |
-| --- | --- | --- |
-| -cvf | Create a new archive | `tar -cvf archive.tar file1 file2 file3` |
-| -xvf | Extract files from an archive | `tar -xvf archive.tar` |
-| -C | Extract files to a specific directory | `tar -xvf archive.tar -C /path/to/directory` |
-| -tvf | List the contents of an archive | `tar -tvf archive.tar` | 
-| -czvf | Create a new archive with gzip compression | `tar -czvf archive.tar.gz file1 file2 file3` |
-| -xzvf | Extract files from an archive with gzip compression | `tar -xzvf archive.tar.gz` |
+| Option | Description | Command |
+|--------|-------------|---------|
 | -cjvf | Create a new archive with bzip2 compression | `tar -cjvf archive.tar.bz2 file1 file2 file3` |
 | -xjvf | Extract files from an archive with bzip2 compression | `tar -xjvf archive.tar.bz2` |
 | -cJvf | Create a new archive with xzip compression | `tar -cJvf archive.tar.xz file1 file2 file3` |
@@ -165,7 +163,7 @@ Then we can update the archive like this:
 | -dvf | Verify the archive | `tar -dvf /tmp/archive.tar` |
 | --wildcards | Use wildcards | `tar -cvf archive.tar /home/*.txt` |
 | -cvpf | Preserve permissions | `tar -cvpf archive.tar /home` |
-| split | Split the archive | `tar -cvf - /home | split -b 100M - /tmp/backup.tar.part_` |
+| split | Split the archive | `tar -cvf - /home \| split -b 100M - /tmp/backup.tar.part_` |
 | -g snapshot.file (or any other name like sn.snar) | Create a snapshot file | `tar -cvJf full-backup.tar.xz -g snapshot.file  /etc` |
-| -uvf | Update the archive | `tar -uvf /tmp/full-backup.tar /etc` |	
+| -uvf | Update the archive | `tar -uvf /tmp/full-backup.tar /etc` |
 
