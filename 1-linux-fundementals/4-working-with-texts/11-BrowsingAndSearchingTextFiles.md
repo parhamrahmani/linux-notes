@@ -1,0 +1,271 @@
+## Browsing and Searching Text Files with `more`, `less`, `head`, `tail`,`cat`,`tac` and `grep`
+### ``more`` and ``less``
+#### ``more``
+- `more` is a command-line utility that is used to display the contents of a file one screen at a time.
+- the original `more` command is not used much now, as `less` is more powerful and has more features.
+#### ``less``
+- `less` was developed to offer more advanced features than `more`.
+
+##### Demo
+- let's take a look at our system log messages. In redhat based systems, the system log messages are stored in `/var/log/messages`.
+```bash
+sudo more /var/log/messages
+```
+- use `space` key to go to the next page, `b` key to go back, `q` key to quit.
+- lets use `less` to view the same file.
+```bash
+sudo less /var/log/messages
+```
+- use arrow keys to navigate. 
+- let's use `less -f` to view the file in follow mode.
+follow mode is used to view the file in real-time.
+
+### ``head`` and ``tail``
+utility to display the first or last few lines of a file.
+#### ``head``
+- `head` is a command-line utility that is used to display the first few lines of a file.
+- by default, `head` displays the first 10 lines of a file.
+- use `-n` option to specify the number of lines to display.
+Examples:
+- basic usage
+```bash
+head ~/.zshrc
+```
+```
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+```
+- using the `n` option
+```bash
+head -n 5 ~/.zshrc
+```
+```
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+```
+- combining with `ls` command
+```bash
+ls -l /etc | head -n 5
+```
+```
+total 1184
+-rw-r--r--  1 root root     12 Apr 23 11:40 adjtime
+-rw-r--r--  1 root root   1529 Jun 23  2020 aliases
+drwxr-xr-x  2 root root   4096 Jul 27 02:14 alternatives
+drwxr-xr-x  2 root root   4096 Jan 10  2022 bash_completion.d
+```
+- combining with `tail` command
+```bash
+ls -l /etc | head -n 5 | tail -n 2
+```
+```
+drwxr-xr-x  2 root root   4096 Jul 27 02:14 alternatives
+drwxr-xr-x  2 root root   4096 Jan 10  2022 bash_completion.d
+```
+this will display the last 2 lines of the output of `ls -l /etc | head -n 5`
+
+#### ``tail``
+- `tail` is a command-line utility that is used to display the last few lines of a file.
+- by default, `tail` displays the last 10 lines of a file.
+- use `-n` option to specify the number of lines to display.
+- use `-f` option to view the file in follow mode.
+
+Examples:
+- basic usage
+```bash
+tail ~/.zshrc
+```
+```
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+```
+- using the `n` option
+```bash
+tail -n 5 ~/.zshrc
+```
+```
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+```
+- combining with `ls` command
+```bash	
+ls -l /etc | tail -n 5
+```
+```
+-rw-r--r--  1 root root    252 May  7  2022 zlogin
+-rw-r--r--  1 root root     86 May  7  2022 zlogout
+-rw-r--r--  1 root root    375 May  7  2022 zprofile
+-rw-r--r--  1 root root    510 May  7  2022 zshenv
+-rw-r--r--  1 root root   1164 May  7  2022 zshrc
+```
+- combining with `head` command
+```bash
+ls -l /etc | head -n 5 | tail -n 2
+```
+```
+drwxr-xr-x  2 root root   4096 Jul 27 02:14 alternatives
+drwxr-xr-x  2 root root   4096 Jan 10  2022 bash_completion.d
+```
+- using the `f` option
+```bash
+tail -f /var/log/messages
+```
+this will display the last 10 lines of the file and will keep the file open and display new lines as they are added to the file.
+
+### ``cat`` and ``tac``
+#### ``cat``
+- `cat` is a command-line utility that is used to concatenate and display the contents of a file.
+- `-A` option is used to display all characters, including non-printing characters.
+- `-b` option is used to number non-blank output lines.
+- `-n` option is used to number all output lines.
+- `-s` option is used to squeeze multiple adjacent blank lines into a single blank line. 
+#### ``tac``
+- `tac` is a command-line utility that is used to display the contents of a file in reverse order.
+Examples:
+- basic usage
+```bash
+cat /etc/hosts
+```
+```
+# This file was automatically generated by WSL. To stop automatic generation of this file, add the following entry to /etc/wsl.conf:
+# [network]
+# generateHosts = false
+127.0.0.1       localhost
+127.0.1.1       prahman-BC7Q3F3.northamerica.cerner.net prahman-BC7Q3F3
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+- using the `A` option
+```bash
+cat -A /etc/hosts
+```
+```
+# This file was automatically generated by WSL. To stop automatic generation of this file, add the following entry to /etc/wsl.conf:$
+# [network]$
+# generateHosts = false$
+127.0.0.1^Ilocalhost$
+127.0.1.1^Iprahman-BC7Q3F3.northamerica.cerner.net^Iprahman-BC7Q3F3$
+$
+# The following lines are desirable for IPv6 capable hosts$
+::1     ip6-localhost ip6-loopback$
+fe00::0 ip6-localnet$
+ff00::0 ip6-mcastprefix$
+ff02::1 ip6-allnodes$
+ff02::2 ip6-allrouters$
+```
+- using the `b` option
+```bash	
+cat -b /etc/hosts
+```
+```
+     1  # This file was automatically generated by WSL. To stop automatic generation of this file, add the following entry to /etc/wsl.conf:
+     2  # [network]
+     3  # generateHosts = false
+     4  127.0.0.1       localhost
+     5  127.0.1.1       prahman-BC7Q3F3.northamerica.cerner.net prahman-BC7Q3F3
+
+     6  # The following lines are desirable for IPv6 capable hosts
+     7  ::1     ip6-localhost ip6-loopback
+     8  fe00::0 ip6-localnet
+     9  ff00::0 ip6-mcastprefix
+    10  ff02::1 ip6-allnodes
+    11  ff02::2 ip6-allrouters
+```
+- using the `n` option
+```bash
+cat -n /etc/hosts
+```
+```
+     1  # This file was automatically generated by WSL. To stop automatic generation of this file, add the following entry to /etc/wsl.conf:
+     2  # [network]
+     3  # generateHosts = false
+     4  127.0.0.1       localhost
+     5  127.0.1.1       prahman-BC7Q3F3.northamerica.cerner.net prahman-BC7Q3F3
+     6
+     7  # The following lines are desirable for IPv6 capable hosts
+     8  ::1     ip6-localhost ip6-loopback
+     9  fe00::0 ip6-localnet
+    10  ff00::0 ip6-mcastprefix
+    11  ff02::1 ip6-allnodes
+    12  ff02::2 ip6-allrouters
+```
+- using `tac`
+it displays the contents of the file in reverse order.
+```bash
+tac /etc/hosts
+```
+```
+ff02::2 ip6-allrouters
+ff02::1 ip6-allnodes
+ff00::0 ip6-mcastprefix
+fe00::0 ip6-localnet
+::1     ip6-localhost ip6-loopback
+# The following lines are desirable for IPv6 capable hosts
+
+127.0.1.1       prahman-BC7Q3F3.northamerica.cerner.net prahman-BC7Q3F3
+127.0.0.1       localhost
+# generateHosts = false
+# [network]
+# This file was automatically generated by WSL. To stop automatic generation of this file, add the following entry to /etc/wsl.conf:
+```
+### ``grep``
+- `grep` is a highly used command-line utility that is for searching for a specific string in a file.
+- `grep` stands for `Global Regular Expression Print`.
+- `grep` is case-sensitive by default.
+- use `-i` option to make `grep` case-insensitive.
+- use `-r` option to search recursively in directories.
+- use `-v` option to invert the match. (exclusion of a pattern)
+- use `-l` option to display only the names of files that contain the pattern.
+- use `-A5` option to display 5 lines after the match.
+- use `-B5` option to display 5 lines before the match.
+- use `-C5` option to display 5 lines before and after the match. 
+- very useful in piping
+- use `2>/dev/null` to suppress error messages.
+#### Basic Usage
+```bash
+grep root *
+```
+this will search for the string `root` in all files in the current directory.
+```bash
+grep -i root *
+```
+this will search for the string `root` in all files in the current directory, ignoring the case.
+```bash
+grep -r root /etc/passwd
+```
+this will search for the string `root` in all files in the `/etc/passwd` directory.
+#### Using `grep` while piping
+```bash
+ps aux | grep http
+```
+this will search for the string `http` in the output of the `ps aux` command.
+
+
+
