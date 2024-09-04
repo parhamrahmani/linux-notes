@@ -27,6 +27,10 @@ In this repository i am gathering all stuff related to linux including markdown 
       - [Browsing and Searching Text Files](1-linux-fundementals/4-working-with-texts/10-BrowsingAndSearchingTextFiles.md) - How to browse and search text files using `more`, `less`, `head`, `tail`, `cat`, `tac`, `grep`, etc. 
       - [Summary](1-linux-fundementals/4-working-with-texts/README.md)
       - [Example Task](1-linux-fundementals/4-working-with-texts/example-textedit.md) - An example task to practice text file editing.
+    - [Connecting to a Server](1-linux-fundementals/5-connecting-to-a-server/)
+        - [Understanding `root` user, `sudo`, `su`, `visudo`](1-linux-fundementals/5-connecting-to-a-server/11-root.md)
+        - [SSH](1-linux-fundementals/5-connecting-to-a-server/12-ssh.md) - How to connect to a server using `ssh`.
+        - [Summary](1-linux-fundementals/5-connecting-to-a-server/README.md)
 - #### [Linux Bash Scripting](linux-bash-scripting)
     - [Bash Scripting Learning Notes](linux-bash-scripting/1-bash-scripting-notes) - This directory contains notes on bash scripting concepts and examples.
         - [Basics](linux-bash-scripting/1-bash-scripting-notes/1(Basics).md)
