@@ -16,7 +16,57 @@ e.g. `man man` will display the manual for the `man` command.
 - `man -k <keyword> to search for a keyword in mandb
 e.g. man -k user
 - man appropos - search the manual page names and descriptions
-
+- **ls** - List directory contents
+- **pwd** - Print working directory
+- **cd** - Change directory
+- **cp** - Copy files and directories
+- **mv** - Move files and directories
+- **cat** - Concatenate and display files
+- **touch** - Create an empty file
+- **rm** - Remove files or directories
+- **mkdir** - Make directories
+- **rmdir** - Remove empty directories
+- **chmod** - Change file permissions
+- **chown** - Change file owner and group
+- **ps** - Process status
+- **top** - Display and update sorted information about processes
+- **history** - Display the history of commands
+- **clear** - Clear the terminal screen
+- **date** - Display the current date and time
+- **whoami** - Display the current user
+- **su** - Switch user
+- **sudo** - Execute a command as another user
+- **passwd** - Change a user's password
+- **appropos** - search the manual page names and descriptions
+- **mandb** - create or update the manual page index cache
+- **pinfo** - display the documentation for a command or a program
+- **sudo su** - change user to root user
+- **su [username]** - change user to another user- **ls** - List directory contents
+- **pwd** - Print working directory
+- **cd** - Change directory
+- **cp** - Copy files and directories
+- **mv** - Move files and directories
+- **cat** - Concatenate and display files
+- **touch** - Create an empty file
+- **rm** - Remove files or directories
+- **mkdir** - Make directories
+- **rmdir** - Remove empty directories
+- **chmod** - Change file permissions
+- **chown** - Change file owner and group
+- **ps** - Process status
+- **top** - Display and update sorted information about processes
+- **history** - Display the history of commands
+- **clear** - Clear the terminal screen
+- **date** - Display the current date and time
+- **whoami** - Display the current user
+- **su** - Switch user
+- **sudo** - Execute a command as another user
+- **passwd** - Change a user's password
+- **appropos** - search the manual page names and descriptions
+- **mandb** - create or update the manual page index cache
+- **pinfo** - display the documentation for a command or a program
+- **sudo su** - change user to root user
+- **su [username]** - change user to another user
 e.g. `man -k user` will search for the keyword `user` in the
 manual pages and `man apropos user` will search for the keyword `user` in the manual page names and descriptions.
 - mandb - create or update the manual page index cache 

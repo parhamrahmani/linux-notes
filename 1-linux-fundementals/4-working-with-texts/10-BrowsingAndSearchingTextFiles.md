@@ -267,5 +267,218 @@ ps aux | grep http
 ```
 this will search for the string `http` in the output of the `ps aux` command.
 
+### `cut`
+cut is a command-line utility that is used to extract sections from each line of a file.
+- use `-d` option to specify the delimiter.
+- use `-f` option to specify the fields to extract.
+
+Examples:
+- basic usage
+```bash
+cut -f 3 /etc/passwd
+```
+this will display the 3rd field of each line in the `/etc/passwd` file. But since we didn't use the `-d` option, it doesn't know what the delimiter is, so it will display the entire line.
+```
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+USER:x:1000:1000::/home/USER:/usr/bin/zsh
+```
+- using the `d` option
+```bash
+cut -d ':' -f 3 /etc/passwd
+```
+```
+0
+1
+2
+3
+4
+5
+6
+7
+8
+11
+12
+14
+65534
+999
+81
+59
+74
+1000
+```
+this will display the 3rd field of each line in the `/etc/passwd` file. Since we used the `-d` option with `:`, it will use `:` as the delimiter.
+
+
+### `sort`
+Usually used with cut and grep to sort the output. 
+- use `-r` option to sort in reverse order.
+- use `-n` option to sort numerically.
+- use `-k` option to specify the field to sort on.
+  
+Examples:
+```bash 
+cut -d ':' -f 3 /etc/passwd | sort -n
+```
+```
+0
+1
+2
+3
+4
+5
+6
+7
+8
+11
+12
+14
+59
+74
+81
+999
+1000
+65534
+```
+this will display the 3rd field of each line in the `/etc/passwd` file, sort them numerically.
+
+### `regular expressions`
+- Regular expressions are text patterns that are used to search for specific patterns in text. Mostly used in `grep`,`vim`,`sed`,`awk`. 
+- always in single quotes.
+- regular expressions != globbing(wildcards), they look similar but are different.
+
+#### Basic Regular Expressions
+- ``^`` - matches the beginning of a line. 
+  - Example: `^root` will match all lines that start with `root`.
+  - Example: `grep '^|' myfile` will match all lines that start with `|`.
+- ``$`` - matches the end of a line.
+  - Example: `root$` will match all lines that end with `root`.
+  - Example: `grep 'anna$' myfile` will match all lines that end with `anna`.
+- ``\b`` - matches a word boundary.
+  - Example: `\broot\b` will match all lines that contain the word `root`.
+  - Example: `grep '\banna\b' myfile` will match all lines that contain the word `anna`.
+  - 2nd Example: ``grep '^lea\b' myfile`` will match all lines that start with `lea`.
+- ``*`` zero or more occurrences of the previous character.
+  - Example: ``grep 'n.*x' myfile`` will match all lines that contain `n` followed by any character and then `x`.
+- ``+`` one or more occurrences of the previous character.
+    - Example: ``grep -E 'bi+t' myfile`` will search for words that contain the letter `b`, followed by one or more `i` and then `t`. This an example of an extended regular expression.
+- ``?`` zero or one occurrence of the previous character.
+    - Example: ``grep -E 'bi?t' myfile`` will search for words that contain the letter `b`, followed by zero or one `i` and then `t`. This an example of an extended regular expression.
+- ``n\{n\}`` - matches exactly `n` occurrences of the previous character.
+    - Example: ``grep 'ban{2}t' myfile`` will search for words that contain the letter `ba`, followed by two `n` and then `t`.
+- string must be a word
+    - Example: ``grep '\anna\b' myfile`` will search for the word `anna` in the file. ``\b`` is used to match the word boundary.
+- ``.`` - matches any single character.
+    - Example: ``grep 'b.t' myfile`` will search for words that contain the letter `b`, followed by any character and then `t`.
+    - Example: ``grep '^.$' myfile`` will search for lines that contain only one character.
+- either option
+    - Example: ``grep -E '(root | bin)' myfile`` will search for lines that contain either `root` or `bin`. Another example of a extended regular expression.
+  
+### Using `tr`
+- `tr` is a command-line utility that is used to translate characters.
+#### Examples
+- convert lower case to upper case
+```bash
+echo "hello" | tr '[:lower:]' '[:upper:]'
+```
+```
+HELLO
+```
+```bash
+echo "hello" | tr [a-z] [A-Z]
+```
+```
+HELLO
+```
+### Introduction to `awk`
+- `awk` is a powerful command-line utility that is used for pattern scanning and processing. More complex operations can be done with `awk` on text files.
+- It is so advanced it can be used as a scripting language.
+- `awk` advanced feauturs are not common anymore. 
+#### Examples
+- print every line in passwd file
+```bash
+awk '{ print $0 }' /etc/passwd
+```
+this will print each line of the `/etc/passwd` file.
+- awk print with field separator
+```bash
+awk -F : '{ print $1 }' /etc/passwd
+```
+this will print the first field of each line in the `/etc/passwd` file. `-F` option is used to specify the field separator.
+- awk print lines longer than 50 characters
+```bash
+awk 'length($0) > 50' /etc/passwd
+```
+```
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+```
+- get the userid of the user `USER` using awk from the passwd file.
+```bash
+awk -F : '/USER/ { print $3 }' /etc/passwd
+```
+```
+1000
+```
+- You can also use the `grep` to do this:
+    ```bash
+    grep USER /etc/passwd | cut -d ':' -f 3
+    ``` 
+    ```
+    1000
+    ```
+### Introduction to `sed`
+- `sed` is a command-line utility that is used to perform text transformations.
+- a steam editor, and allows you to edit files in non-visual mode
+- Example: `sed -n 5p /etc/passwd` will print the 5th line of the `/etc/passwd` file.
+- Example: `sed -i s/PRORALIN/USER/g /etc/passwd` will replace all occurrences of `PRORALIN` with `USER` in the `/etc/passwd` file.
+- Example: `sed -i -e '2d' /etc/passwd` will delete the 2nd line of the `/etc/passwd` file.
+#### Morde advanced usage
+```bash
+# Make 5 text files and write hello in them
+touch file{1..5}.txt
+echo "hello" > file{1..5}.txt
+cat file{1..5}.txt
+```
+```
+hello
+hello
+hello
+hello
+hello
+```
+```bash
+# replace hello with bye in all files using sed and a loop
+for i in *.txt;
+do sed -i 's/hello/bye/g' $i;
+done
+```
+```bash
+# check the files
+cat file{1..5}.txt
+```
+``` 
+bye
+bye
+bye
+bye
+bye
+```
 
 

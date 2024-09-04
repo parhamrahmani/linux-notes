@@ -1,19 +1,22 @@
-# Review of the section and cheat sheet
-## Hard links and Symbolic Links
+## Advanced File Management
+In this section, we will learn about hard links and symbolic links, searching files and directories, archiving and compression, and mounting and filesystems. We will also review the section and provide a cheat sheet for quick reference.
+
+### TL;DR
+#### Hard links and Symbolic Links
 | Command | Description | Example |
 | --- | --- | --- |
 | `ln` | create a hard link to a file `ln <target> <link_name>` | `ln hosts hosts_hardlink` |
 | `ln -s` | create a symbolic link to a file `ln -s <target> <link_name>` | `ln -s hosts hosts_symlink` |
 | `ls -li` | list files with inode number | `ls -li hosts hosts_hardlink hosts_symlink` |
-## Searching files and directories
-### `find`
+#### Searching files and directories
+##### `find`
 | Command | Description |
 |---------|-------------|
 | `find /path/to/search -user username` | Find files owned by a specific user. |
 | `find /path/to/search -name "filename"` | Find files by name. |
 | `find /path/to/search -size +1M` | size-based. Find files larger than 1MB in the path |
 | `find /path/to/search -perm /4000` | permission based. Find files with setuid permission. |
-#### Advanced Usage of `find`
+###### Advanced Usage of `find`
 
 | Command | Description | Options Used |
 |---------|-------------|--------------|
@@ -22,21 +25,21 @@
 | `sudo find /etc -type f -exec grep -l "root" {} \;` | Find files in `/etc` containing the string "root". | Using `grep` with `find` |
 | `sudo find /etc/ -name '*.conf' -type f -exec cp {} /tmp/test \;` | Find files in `/etc` ending with `.conf` and copy them to `/tmp/test`. | Using wildcards with `find` and `-exec` option |
 | `sudo find /etc/ -name '*' -type f \| xargs grep "127.0.0.1" 2>/dev/null` | Find files in `/etc` and search for "127.0.0.1" within them, suppressing error messages. | Using `xargs` with `grep`, ignoring errors with `2>/dev/null` |
-### Others
+##### Others
 | Command | Description |
 |---------|-------------|
 | `which` | Find the location of a command. |
 | `locate` | Find files by name. |
 | `updatedb` | Update the database used by `locate`. |
 
-## Archiving and Compression
-### compression utilities
+#### Archiving and Compression
+##### compression utilities
 | Command | Description |
 |---------|-------------|
 | `gzip` | Compress files. Fast but not the best compression |
 |`bzip2` | Compress files. Slower but better compression |
 | `xzip` | Compress files. Slowest but best compression |
-### `tar` Command cheat sheet
+##### `tar` Command cheat sheet
 | Option | Description | Command |
 |--------|-------------|---------|
 | -cjvf | Create a new archive with bzip2 compression | `tar -cjvf archive.tar.bz2 file1 file2 file3` |
@@ -51,7 +54,7 @@
 | split | Split the archive | `tar -cvf - /home \| split -b 100M - /tmp/backup.tar.part_` |
 | -g snapshot.file (or any other name like sn.snar) | Create a snapshot file | `tar -cvJf full-backup.tar.xz -g snapshot.file  /etc` |
 | -uvf | Update the archive | `tar -uvf /tmp/full-backup.tar /etc` |
-## Mounting and Filesystems
+#### Mounting and Filesystems
 | Command | Description |
 |---------|-------------|
 | `lsblk` | List all block devices. |
