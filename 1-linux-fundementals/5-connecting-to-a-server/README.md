@@ -50,3 +50,61 @@ Some Example Configurations:
 | RHEL | `sudo usermod -aG wheel someuser` | Add `someuser` to `wheel` group. |
 | Debian | `sudo usermod -aG sudo someuser` | Add `someuser` to `sudo` group. |
 | RHEL/Debian | `sudo passwd someuser` | Change password for `someuser`. |
+
+##### SSH
+- use ``ssh`` to connect to a remote server.
+```bash	
+ssh user@hostname
+```
+or 
+```bash
+ssh user@ip_address
+```
+###### Installation
+- Red Hat/CentOS
+  ```bash
+  sudo dnf update && sudo dnf  install openssh-server; 
+  ```
+  or 
+  ```bash
+  sudo yum install openssh-server;
+  ```
+- Ubuntu/Debian
+  ```bash
+  sudo apt update && sudo apt install openssh-server
+  ```
+  ###### Enable and Start SSH Service
+  - Red Hat/CentOS
+    ```bash
+    sudo systemctl start sshd
+    sudo systemctl enable --now sshd
+    ```
+  - Ubuntu/Debian
+    ```bash
+    sudo systemctl start ssh
+    sudo systemctl enable --now ssh
+    ```
+###### Firewall Configuration
+- Red Hat/CentOS
+  ```bash
+  sudo firewall-cmd --permanent --add-service=ssh
+  sudo firewall-cmd --reload
+  ```
+- Ubuntu/Debian
+  ```bash
+  sudo ufw allow ssh
+  sudo ufw enable
+  ```
+###### Find Server IP Address
+```bash	
+ip addr show
+```
+###### Copy Files (Secure Copy)
+- Copy from server to client
+  ```bash
+  scp user@hostname:/path/to/source /path/to/destination
+  ```
+- Copy from client to server
+  ```bash
+  scp /path/to/destination user@ip_address:/path/to/source 
+  ```
