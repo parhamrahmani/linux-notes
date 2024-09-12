@@ -1,11 +1,11 @@
-## Linux Notes & Other Linux Related Stuff
+# Linux Notes & Other Linux Related Stuff
 
 In this repository i am gathering all stuff related to linux including markdown notes on learning linux fundementals and concepts, shell scripting, configuration files, etc. These notes are my personal notes and it is intended to organize all linux-related stuff in one place.
 
 
 
-### Table of Contents
-- #### [Linux Fundamentals](1-linux-fundementals)
+## Table of Contents
+- ### [Linux Fundamentals](1-linux-fundementals)
   - [Basics](1-linux-fundementals/1-basics)
      - [Core Basics and Commands](1-linux-fundementals/1-basics/1-FirstBasics.md) - Summary of basic linux commands, that used in day to day operations.
      - [Using Manauls and getting help with commands](1-linux-fundementals/1-basics/2-UsingManAndHelp.md) - How to use `man`, `--help` and `pinfo` to get help with commands.
@@ -34,16 +34,16 @@ In this repository i am gathering all stuff related to linux including markdown 
     - [Bash Shell](1-linux-fundementals/6-bash)
         - [Shell Basics](1-linux-fundementals/6-bash/shell.md) - Overview of the linux system structure, shell, daemons, init systems, etc.
         - [Summary](1-linux-fundementals/6-bash/README.md)
-- #### [Linux User and Group Management, Permissions and Storgae Management](2-usergrouppermissions)
-- #### [Linux Operations Basics](3-linux-operations-basics)
-- #### [Linux System Administration](4-linux-system-administration)
-  - ##### [Advanced Systems Management](4-linux-system-administration/1-sysmgmt)
-  - ##### [Security](4-linux-system-administration/2-sec)
-  - ##### [Storage Management](4-linux-system-administration/3-storage)
-  - ##### [Containerization and Virtualization](4-linux-system-administration/4-contvirt)
-  - ##### [Open Source Solutions](4-linux-system-administration/5-opensource)
-- #### [Linux Exam Lab](5-linux-exam-lab)
-- #### [Linux Bash Scripting](linux-bash-scripting)
+- ### [Linux User and Group Management, Permissions and Storgae Management](2-usergrouppermissions)
+- ### [Linux Operations Basics](3-linux-operations-basics)
+- ### [Linux System Administration](4-linux-system-administration)
+  - #### [Advanced Systems Management](4-linux-system-administration/1-sysmgmt)
+  - #### [Security](4-linux-system-administration/2-sec)
+  - #### [Storage Management](4-linux-system-administration/3-storage)
+  - #### [Containerization and Virtualization](4-linux-system-administration/4-contvirt)
+  - #### [Open Source Solutions](4-linux-system-administration/5-opensource)
+- ### [Linux Exam Lab](5-linux-exam-lab)
+- ### [Linux Bash Scripting](linux-bash-scripting)
     - [Bash Scripting Learning Notes](linux-bash-scripting/1-bash-scripting-notes) - This directory contains notes on bash scripting concepts and examples.
         - [Basics](linux-bash-scripting/1-bash-scripting-notes/1(Basics).md)
         - [Conditional Statements, Branching and Looping](linux-bash-scripting/1-bash-scripting-notes/2-ConditionalStatementsBranchingLooping.md)
@@ -52,7 +52,7 @@ In this repository i am gathering all stuff related to linux including markdown 
         - [Sleep and Process Management](linux-bash-scripting/1-bash-scripting-notes/6-SleepProcessManagement.md)
         - [Interactive Scripts](linux-bash-scripting/1-bash-scripting-notes/7-InteractiveScripts.md)
     - [Example Scripts](linux-bash-scripting/examples) - This directory contains example scripts that are created while learning bash scripting.
-- #### [Miscellaneous](misc)
+- ### [Miscellaneous](misc)
     - [Using zsh as Default Shell for Autocompletion, Suggestions and Highlighting](misc/zsh-autocompleting.md)
     - [My XFCE Desktop Configuration](misc\xfce-config.md)
     - [My Favorite Linux Distributions](misc/linux-distros.md)
