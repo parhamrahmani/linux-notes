@@ -31,6 +31,18 @@ In this repository i am gathering all stuff related to linux including markdown 
         - [Understanding `root` user, `sudo`, `su`, `visudo`](1-linux-fundementals/5-connecting-to-a-server/11-root.md)
         - [SSH](1-linux-fundementals/5-connecting-to-a-server/12-ssh.md) - How to connect to a server using `ssh`.
         - [Summary](1-linux-fundementals/5-connecting-to-a-server/README.md)
+    - [Bash Shell](1-linux-fundementals/6-bash)
+        - [Shell Basics](1-linux-fundementals/6-bash/shell.md) - Overview of the linux system structure, shell, daemons, init systems, etc.
+        - [Summary](1-linux-fundementals/6-bash/README.md)
+- #### [Linux User and Group Management, Permissions and Storgae Management](2-usergrouppermissions)
+- #### [Linux Operations Basics](3-linux-operations-basics)
+- #### [Linux System Administration](4-linux-system-administration)
+  - ##### [Advanced Systems Management](4-linux-system-administration/1-sysmgmt)
+  - ##### [Security](4-linux-system-administration/2-sec)
+  - ##### [Storage Management](4-linux-system-administration/3-storage)
+  - ##### [Containerization and Virtualization](4-linux-system-administration/4-contvirt)
+  - ##### [Open Source Solutions](4-linux-system-administration/5-opensource)
+- #### [Linux Exam Lab](5-linux-exam-lab)
 - #### [Linux Bash Scripting](linux-bash-scripting)
     - [Bash Scripting Learning Notes](linux-bash-scripting/1-bash-scripting-notes) - This directory contains notes on bash scripting concepts and examples.
         - [Basics](linux-bash-scripting/1-bash-scripting-notes/1(Basics).md)
