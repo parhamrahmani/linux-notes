@@ -1,5 +1,8 @@
 ### Connecting to a Server
 This section contains notes on connecting to a server ssh, working with linux from windows, sudo configuration, etc.
+#### Detailed Notes
+- [Root User](/1-linux-fundementals/5-connecting-to-a-server/11-root.md)
+- [``ssh``](/1-linux-fundementals/5-connecting-to-a-server/12-ssh.md)
 #### TL;DR
 ##### Root User
 - **Description**: Superuser with highest privileges; can perform any task.

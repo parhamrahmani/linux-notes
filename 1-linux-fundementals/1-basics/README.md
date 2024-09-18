@@ -1,6 +1,8 @@
-### Basics
-This directory contains notes on basic linux commands and concepts.
-#### TL;DR
+## Linux Introduction
+### Detailed Notes
+- [First Basics](/1-linux-fundementals/1-basics/1-FirstBasics.md)
+- [Man Pages and Help](/1-linux-fundementals/1-basics/2-UsingManAndHelp.md)
+### TL;DR
 ##### Cheat Sheet
 
 | Command       | Description                                      |

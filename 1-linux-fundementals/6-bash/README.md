@@ -1,4 +1,9 @@
+# Bash
+## Detailed Notes
+- [Shell](/1-linux-fundementals/6-bash/shell.md)
+
 ## Review
+
 ### Linux Basic Architecture
 ![architecture](barc.drawio.png)
 ### Redirection and Piping

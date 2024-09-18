@@ -1,5 +1,9 @@
 ## Basic File Management
 This section covers the basic file management tasks in linux. It includes creating, copying, moving, and deleting files and directories. It also includes some examples to practice these tasks.
+### Detailed Notes
+- [Linux File Systems](/1-linux-fundementals/2-basic-file-management/3-LinuxFileSystems.md)
+- [Essential File Management](/1-linux-fundementals/2-basic-file-management/4-EssentialFileManagement.md)
+- [Some Examples](/1-linux-fundementals/2-basic-file-management/basic-file-mgmt-examples.md)
 ### TL;DR
 #### Linux File Systems
 ![alt text](linuxfilesystemshier.drawio.png)

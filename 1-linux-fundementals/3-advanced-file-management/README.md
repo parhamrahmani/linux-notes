@@ -1,6 +1,11 @@
 ## Advanced File Management
 In this section, we will learn about hard links and symbolic links, searching files and directories, archiving and compression, and mounting and filesystems. We will also review the section and provide a cheat sheet for quick reference.
-
+### Detailed Notes
+- [Hard Links and Symbolic Links](/1-linux-fundementals/3-advanced-file-management/5-HardLinksAndSymbolicLinks.md)
+- [``find``](/1-linux-fundementals/3-advanced-file-management/6-usingFind.md)
+- [Archiving and Compression](/1-linux-fundementals/3-advanced-file-management/7-archiving.md)
+- [Mounting and Filesystems](/1-linux-fundementals/3-advanced-file-management/8-mountfilesys.md)
+- [Some Examples](/1-linux-fundementals/3-advanced-file-management/example-advflmgmt.md)
 ### TL;DR
 #### Hard links and Symbolic Links
 | Command | Description | Example |

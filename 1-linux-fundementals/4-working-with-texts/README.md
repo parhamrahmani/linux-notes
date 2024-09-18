@@ -2,6 +2,10 @@
 This chapter covers the following topics:
 - Text Editors in Linux
 - Browsing and Searching Text Files
+#### Detailed Notes
+- [Text Editors in Linux](/1-linux-fundementals/4-working-with-texts/9-texted-vivimnanogedit.md)
+- [Browsing and Searching Text Files](/1-linux-fundementals/4-working-with-texts/10-BrowsingAndSearchingTextFiles.md)
+- [Examples](/1-linux-fundementals/4-working-with-texts/example-textedit.md)
 #### TL;DR
 ##### Text Editors in Linux
 - `vi` is a text editor that is available in almost all linux distributions.

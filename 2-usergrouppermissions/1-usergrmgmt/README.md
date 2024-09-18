@@ -1,4 +1,7 @@
-# Summary of user group management
+# User & Group Management
+## Detailed Notes
+- [User and Group Management](/2-usergrouppermissions/1-usergrmgmt/users.md)
+## Summary
 ![User Group Management](users.drawio.png)
 ## Permissions
 example:

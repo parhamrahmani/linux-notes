@@ -1,4 +1,6 @@
 # Permissions and Ownership Management in Linux
+## Detailed Notes
+- [Permissions and Ownership Management](/2-usergrouppermissions/2-permmgmt/perm.md)
 ## Review
 - ```ls -l``` command is used to list files and directories in a long format.
 - `u` (User), `g` (Group), and `o` (Others)

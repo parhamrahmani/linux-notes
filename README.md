@@ -2,7 +2,8 @@
 
 In this repository i am gathering all stuff related to linux including markdown notes on learning linux fundementals and concepts, shell scripting, configuration files, etc. These notes are my personal notes and it is intended to organize all linux-related stuff in one place.
 
-
+## How to use this repository
+- Each directory contains some markdown notes and a README.md file that contains a summary of the notes in that directory. Click through the table of contents to find the detailed notes you are looking for. If you click on a directory, you will find the summary of the notes in that directory. 
 
 ## Table of Contents
 - ### [Linux Fundamentals](1-linux-fundementals)
