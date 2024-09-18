@@ -24,4 +24,17 @@
   - Cons
     - rolling release so can be unstable
     - more difficult to use than mint
-    - out of my comfort zone (which is debian based distros)
+
+- [CachyOS](https://cachyos.org/)
+  - Pros
+    - basically arch made easy
+    - lightweight
+    - great for gaming
+    - looks great especially with KDE plasma
+    - very easy installation
+    - bleeding edge
+  - Cons
+    - rolling release so can be unstable
+    - smaller community and not much documentation (however the arch wiki can be used for almost everything)
+    - not as minimal as original arch
+  

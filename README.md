@@ -63,5 +63,4 @@ In this repository i am gathering all stuff related to linux including markdown 
     - [Example Scripts](linux-bash-scripting/examples) - This directory contains example scripts that are created while learning bash scripting.
 - ### [Miscellaneous](misc)
     - [Using zsh as Default Shell for Autocompletion, Suggestions and Highlighting](misc/zsh-autocompleting.md)
-    - [My XFCE Desktop Configuration](misc\xfce-config.md)
     - [My Favorite Linux Distributions](misc/linux-distros.md)

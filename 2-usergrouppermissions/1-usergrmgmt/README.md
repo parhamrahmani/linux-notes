@@ -16,6 +16,7 @@ example:
 | Command                              | Description                                           |
 |--------------------------------------|-------------------------------------------------------|
 | `id`             | Displays user ID, group ID, and group memberships. |
+| `groups`         | Displays group memberships for the current user.   |
 | `uid`       | Unique identifier for the user.                  |
 | `gid`       | Primary group identifier for the user.           |
 | Permissions | File access rights for owner, group, and others. |

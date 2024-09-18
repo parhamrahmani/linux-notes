@@ -1,7 +1,6 @@
 ### Miscellaneous
 In here i gather uncatagorized linux related stuff.
 - [Using zsh as Default Shell for Autocompletion, Suggestions and Highlighting](zsh-autocompleting.md)
-- [My XFCE Desktop Configuration](xfce-config.md)
 - [My Favorite Linux Distributions](linux-distros.md)
 - [My Startup Process](startup-scripts.md)
     - Things i do after a fresh linux installation.
