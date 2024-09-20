@@ -43,7 +43,8 @@ In this repository i am gathering all stuff related to linux including markdown 
     - [Permissions Management](2-usergrouppermissions/2-permmgmt/perm.md) - Understanding permissions, changing permissions, etc.
     - [Summary](2-usergrouppermissions/2-permmgmt/README.md)
   - [Storage](2-usergrouppermissions/3-storagemgmt)
-    - [Storage Management](2-usergrouppermissions/3-storagemgmt/storage.m[d) - Understanding storage management, mounting, unmounting, etc.
+    - [Storage Management](2-usergrouppermissions/3-storagemgmt/storage.md) - Understanding storage management, mounting, unmounting, etc.
+        -[ A Comprehensive Demo](2-usergrouppermissions/3-storagemgmt/storage.md/#comprehensive-demo) 
     - [Summary](2-usergrouppermissions/3-storagemgmt/README.md)
 - ### [Linux Operations Basics](3-linux-operations-basics)
 - ### [Linux System Administration](4-linux-system-administration)
