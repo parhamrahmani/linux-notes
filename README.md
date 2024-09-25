@@ -47,6 +47,8 @@ In this repository i am gathering all stuff related to linux including markdown 
     - [A Comprehensive Demo](2-usergrouppermissions/3-storagemgmt/storage.md/#comprehensive-demo) 
     - [Summary](2-usergrouppermissions/3-storagemgmt/README.md)
 - ### [Linux Operations Basics](3-linux-operations-basics)
+  - [Networking](/3-linux-operations-basics/1-networking/networking.md) - A brief overview of networking in linux.
+      - [Summary](3-linux-operations-basics/1-networking/README.md)
 - ### [Linux System Administration](4-linux-system-administration)
   - #### [Advanced Systems Management](4-linux-system-administration/1-sysmgmt)
   - #### [Security](4-linux-system-administration/2-sec)
