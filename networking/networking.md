@@ -248,3 +248,5 @@ e.g.
 - [nmcli](https://www.networkmanager.dev/docs/api/latest/nmcli.html)
 - [nmcli cheatsheet](https://www.golinuxcloud.com/nmcli-command-examples-cheatsheet-centos-rhel/)
 - [Using nmcli - Beginners Guide](https://raspberrytips.com/nmcli-linux-command/)
+
+## More on Networking
