@@ -274,5 +274,29 @@ sudo systemctl start default.target
 This will start the graphical target.
 
 ## Managing Services in WSL
+In WSL the boot procedure is not done with systemd. This means that you can't use systemctl to manage services in WSL. The processes in WSL are less than a linux on a physical machine or in a VM, since most background services are running in the Windows host. However there is a way to manage services in WSL.
+
+- We are in an Ubuntu WSL
+- let's install nginx
+```bash
+sudo apt update && sudo apt install nginx
+```
+- let's start nginx
+the system has not been booted with systemd as the init system. This means that you can't use systemctl to manage services in WSL. However, you can still manage services in WSL using the ``service`` command.
+```bash	
+sudo service nginx start
+```
+- let's check the status of nginx
+```bash
+sudo service nginx status
+```
+- let's stop nginx
+```bash
+sudo service nginx stop
+```
+- let's restart nginx
+```bash
+sudo service nginx restart
+```
 
 ## Advanced Systemd
