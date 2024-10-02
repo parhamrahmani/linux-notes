@@ -1,23 +1,29 @@
 # Systemd
 Systemd is a init system and system manager for Linux operating systems. It is a replacement for the traditional SysV init system. Systemd is the first process that starts right after the kernel. It is responsible for starting services, processes, mounts, timers, paths, etc. 
-
+  
+  - [Examples](/systemd/README.md/#examples)
+  - [Command Summary](/systemd/README.md/#commands-review)
 - [Systemd](#systemd)
-    - [Units](#units)
+  - [Units](#units)
   - [Managing Services](#managing-services)
     - [Common Commands](#common-commands)
-      - [Example](#example)
     - [Service Configuration Files](#service-configuration-files)
-      - [Examples](#examples)
   - [Managing Targets](#managing-targets)
-    - [Example](#example-1)
     - [Common Commands](#common-commands-1)
-      - [Examples](#examples-1)
   - [Managing Services in WSL](#managing-services-in-wsl)
   - [Advanced Systemd](#advanced-systemd)
+    - [Modifying Systemd Units](#modifying-systemd-units)
+    - [Managing Systemd Sockts](#managing-systemd-sockts)
+      - [``ListenStream`` and ``ListenDatagram``](#listenstream-and-listendatagram)
+    - [Managing Systemd Timers](#managing-systemd-timers)
+      - [``OnCalendar`` , ``OnBootSec`` and ``OnUnitActiveSec``](#oncalendar--onbootsec-and-onunitactivesec)
+      - [``systemd.time`` and ``systemd.timer``](#systemdtime-and-systemdtimer)
+    - [Systemd Cgroups](#systemd-cgroups)
+      - [Managing Cgroups](#managing-cgroups)
+        - [Slices](#slices)
+    - [Managing Dependencies](#managing-dependencies) 
 
-  
-
-### Units
+## Units
 - A unit is a configuration file that describes how a service, socket, device, mount point, or other resource should be managed by systemd.
 - Units are stored in `/etc/systemd/system/` and `/usr/lib/systemd/system/`
   
@@ -29,6 +35,9 @@ Systemd is a init system and system manager for Linux operating systems. It is a
 | ``systemctl -t help`` | List all unit types |
 | ``systemctl list-unit-files`` | List all unit files |
 | ``systemctl list-units`` | List all active units |
+| ``systemctl list-unit-files -t socket`` | List all socket units |
+| ``systemctl list-unit-files -t service`` | List all service units |
+| ``systemctl list-unit-files -t timer`` | List all timer units |	
 | ``systemctl enable name.service`` | Enable a service to start at boot |
 | ``systemctl disable name.service`` | Disable a service to start at boot |
 | ``systemctl start name.service`` | Start a service |
@@ -40,6 +49,7 @@ Systemd is a init system and system manager for Linux operating systems. It is a
 | ``systemctl cat name.service`` | Show the configuration file of a service |
 | ``systemctl edit name.service`` | Edit the configuration file of a service |
 | ``systemctl daemon-reload`` | Reload the configuration files of systemd |
+
 
 - ***enable vs start***:
   - enable: Sets up a unit (service) to start automatically at boot time.
@@ -72,29 +82,10 @@ sudo systemctl restart servicename
 # this tells the service to reload its configuration files. less disruptive than restart
 sudo systemctl reload servicename
 ```
+---
+***See this example with ``nginx`` for a practical example:***
+  - ***[Installing a Service and Enabling it - ``Nginx``](/systemd/README.md/#installing-a-service-and-enabling-it)***
 
-#### Example
-- let's install and enable nginx
-```bash	
-# install nginx
-sudo dnf install nginx
-# enable nginx
-sudo systemctl enable nginx.service
-```
-```
-Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /usr/lib/systemd/system/nginx.service.
-```
-this will enable nginx to start at boot by creating a symlink to the service file in the multi-user target directory.
-when we check the status of the service, we can see that the service is disabled.
-
-if you want to start nginx right away, you can use:
-```bash
-sudo systemctl start nginx
-```
-after starting nginx, you can check the status of the service using
-```bash
-sudo systemctl status nginx
-```
 ### Service Configuration Files
 - to show the configuration file of a service, you can use:
 ```bash
@@ -115,79 +106,11 @@ After making changes, you can reload the service to apply the changes.
 ```bash
 sudo systemctl daemon-reload
 ```
-#### Examples
-- let's see the configuration file of sshd service
-```bash
-sudo systemctl cat sshd
-```
-it leads you to ``/usr/lib/systemd/system/sshd.service`` file.
-In the file we have the following content:
-```
-[Unit]
-Description=OpenSSH server daemon 
-Documentation=man:sshd(8) man:sshd_config(5)
-After=network.target sshd-keygen.service 
-Wants=sshd-keygen.service
-```
-This is the unit configuration file for the sshd service. It contains the description of the service, documentation, and dependencies.
-Then we have
-```
-[Service]
-Type=notify 
-EnvironmentFile=-/etc/sysconfig/sshd
-ExecStart=/usr/sbin/sshd -D $OPTIONS
-ExecReload=/bin/kill -HUP $MAINPID
-KillMode=process
-Restart=on-failure
-```
-This is the service configuration file for the sshd service. It contains the type of the service, environment variables, the command to start the service, the command to reload the service, the kill mode, and the restart policy.
-Then we have
-```
-[Install]
-WantedBy=multi-user.target
-```
-This is the install configuration file for the sshd service. It contains the target where the service should be enabled.
 
-- let's edit the configuration file of httpd service
-```bash
-sudo systemctl edit httpd
-```
-```
-### Edititng /etc/systemd/system/httpd.service.d/.#override.conf9ab1033efb7e4e7b
-### Anything between here and the comment below will become the new contents of the file
+***See these examples below for a practical example:***
+  - ***[Service Configuration Files](/systemd/README.md/#service-configuration-files)***
+  - ***[Showing a Service Configuration File and Editing it](/systemd/README.md/#showing-a-service-configuration-file-and-editing-it)***
 
-### Lines below this comment will be discarded
-
-```
-So the response shown at the start of the file is a comment that tells you that anything between the two comments will be the new content of the file. You can add your custom configuration here. After saving the file, you can reload the service to apply the changes.
-
-let's add ``Restart=on-failure`` and ``RestartSec=42s`` to the configuration file.
-```
-### Edititng /etc/systemd/system/httpd.service.d/.#override.conf9ab1033efb7e4e7b
-### Anything between here and the comment below will become the new contents of the file
-Restart=on-failure
-RestartSec=5s
-### Lines below this comment will be discarded
-
-```
-let's see the changes
-```bash
-sudo systemctl cat httpd
-```
-```
-# /usr/lib/systemd/system/httpd.service.d/override.conf
-Restart=on-failure
-RestartSec=5s
-```
-At the end of the file, you can see the changes you made to the service configuration file.
-
-let's reload the service to apply the changes and start the service
-```bash
-sudo systemctl daemon-reload # reload the configuration files
-sudo systemctl start httpd
-sudo systemctl status httpd
-```
-The added configuration will make the service restart after a failure and wait for 5 seconds before restarting.
 
 ## Managing Targets
 
@@ -200,33 +123,6 @@ The added configuration will make the service restart after a failure and wait f
 There are the targets that you can boot the system into.
 - other targets are called groups and they are used to group services together.
 
-### Example
-- to list the dependencies of a target
-```bash
-systemctl list-dependencies <target>
-```
-- let's see the default target
-```bash
-systemctl get-default
-```
-```
-graphical.target
-```
-This means that the system boots into the graphical target by default. Which is the desktop environment. 
-- let's see the dependencies of the graphical target
-```bash
-systemctl list-dependencies graphical.target
-```
-The results shows the dependencies of the graphical target. It shows the services that are required to start the graphical target, etc. 
-
-- Let's list all available targets
-```bash
-systemctl list-units --type=target
-# or
-systemctl list-units -t target
-```
-This will list all available targets on the system. 
-
 ### Common Commands
 
 | Command | Description |
@@ -238,40 +134,9 @@ This will list all available targets on the system.
 | ``systemctl isolate target`` | Boot the system into a specific target |
 | ``systemctl set-default target`` | Set the default target |
 
-#### Examples
-- let's change the default target to multi-user target
-```bash
-sudo systemctl set-default multi-user.target
-```
-```
-Removed /etc/systemd/system/default.target.
-Created symlink /etc/systemd/system/default.target → /usr/lib/systemd/system/multi-user.target.
-```
-This will change the default target to the multi-user target. This means that the system will boot into the multi-user target by default.
-
-- let's boot the system into the emergency target
-```bash
-sudo systemctl isolate emergency.target
-```
-This will boot the system into the emergency target. This is useful when you need to troubleshoot the system.
-**Note**: In the VM that I am using, this didn't work properly and the VM went into a black screen without being able to do anything. How to fix this?
-- Reboot the VM
-- When the GRUB menu appears, press 'e' to edit the boot options
-- Find the line that starts with 'linux' and add 'systemd.unit=emergency.target' at the end of the line and press 'Ctrl+x' to boot into the emergency target.
-- now let's start the default target back to graphical target
-```bash
-sudo systemctl start default.target
-```
-This will start a console-like interface. after giving the credentials, you can start the graphical target using
-```bash
-systemctl set-default graphical.target
-```
-This will set the default target to the graphical target. This means that the system will boot into the graphical target by default.
-- let's start the default target again
-```bash
-sudo systemctl start default.target
-```
-This will start the graphical target.
+***See these examples for a practical example:***
+  - ***[Listing all Available Targets and its Dependencies](/systemd/README.md/#listing-all-available-targets-and-its-dependencies)***
+  - ***[Changing the Default Target and Booting into a Specific Target](/systemd/README.md/#changing-the-default-target-from-graphical-to-multi-user)***
 
 ## Managing Services in WSL
 In WSL the boot procedure is not done with systemd. This means that you can't use systemctl to manage services in WSL. The processes in WSL are less than a linux on a physical machine or in a VM, since most background services are running in the Windows host. However there is a way to manage services in WSL.
@@ -300,3 +165,100 @@ sudo service nginx restart
 ```
 
 ## Advanced Systemd
+
+### Modifying Systemd Units
+- showing possible unit parameters
+```bash
+systemctl show unit.type
+```
+- modifying a unit
+```bash
+sudo systemctl edit unit.type
+```
+- reloading the configuration
+```bash
+sudo systemctl daemon-reload
+```
+- restarting the service
+```bash
+sudo systemctl restart unit.type
+sudo systemctl status unit.type
+```
+- setting the default editor for systemctl
+```bash
+# using nano
+export SYSTEMD_EDITOR=/usr/bin/nano
+# using vim
+export SYSTEMD_EDITOR=/usr/bin/vim
+```
+***See the examples below for a practical example:***
+  - ***[changing the Memnory Max Usage of a ``sshd`` service](/systemd//README.md/#changing-the-memnory-max-usage-of-a-sshd-service)***
+
+### Managing Systemd Sockts
+- A systemd socket is used with a service to start the service when the traffic comes in on a specific socket.
+     - have the same name as the service but with a ``.socket`` extension.
+     - while using sockets, the socket is starts/enables and not the service.
+#### ``ListenStream`` and ``ListenDatagram``
+- ``ListenStream``: Specifies the IP address and port number on which the socket should listen for TCP traffic.
+- ``ListenDatagram``: Specifies the IP address and port number on which the socket should listen for UDP traffic.
+
+***Note***: Some sockets come pre-configured with the service and are maybe enabled by default. By running ``sudo systemctl list-units --type=socket`` you can see the status of the sockets and the services they are associated with. If there is no socket associated with a service, you can create a socket file for the service and enable the socket to start the service when the traffic comes in on the specified port. The socket's name has to be same with the service's name but with a ``.socket`` extension. 
+
+***See the examples below for a practical example:***
+  - ***[Managing Sockets in Systemd - Activating Cockpit Socket](/systemd/README.md/#managing-sockets-in-systemd---activating-cockpit-socket)***
+
+### Managing Systemd Timers
+Just like sockets, timers are associated with services with the same names as them with an ``.timer`` extension and timers being started or enabled doesn't start or enable the service. It is used to start the service at a specific time or interval. 
+#### ``OnCalendar`` , ``OnBootSec`` and ``OnUnitActiveSec``
+- ``OnCalendar``: Specifies the calendar time when the timer should be started in cron-like format.
+- ``OnBootSec``, ``OnUnitActiveSec``: Specifies the time after boot when the timer should be started based on other events. 
+#### ``systemd.time`` and ``systemd.timer``
+The documentation for the systemd time formats and others can be found in ``man 7 systemd.time`` or ``man systemd.timer``.
+
+- It can be a good alternative to cron jobs in modern linux systems.
+
+***See the examples below for a practical example:***
+  - ***[Timers in Systemd](/systemd/README.md/#timers-in-systemd)***
+
+### Systemd Cgroups
+Systemd organizes processes with cgroups, this is a Linux kernel feature to limit, police and account the resource usage of certain processes (actually process groups). Control groups place resources in controllers that represent the resource type. Some of the controllers are:
+ - cpu 
+ - memory 
+ - devices 
+ - blkio 
+
+and many more.
+These controllers are used to limit the resources that a process can use and are subdivided into hierarchies or a tree structure where different weights and limits can be set to the branches of the tree.
+
+#### Managing Cgroups
+- ``cgconfig`` and ``cgred`` are the tools used to manage cgroups manually. Not very common, since it was used before systemd was introduced.
+- ``/sys/fs/cgroup`` is the directory where the cgroups settings are stored.
+##### Slices
+Systemd uses slices to group units together. Systemd divides ``cpu``, ``cpuacct``, ``memory`` and ``blkio`` controllers into slices:
+- ``system.slice``: Contains system services, processes and daemons.
+- ``machine.slice``: Contains virtual machines.
+- ``user.slice``: Contains user services and processes. 
+
+***These are default slices and you can create your own slices too.***
+
+In the diagram below, you can see the hierarchy of the slices.
+
+![slices](/systemd/slices.drawio.png)
+
+So for example, if on the user slice there is only one user logged in, the user slice will get all the cpu share designated to it. If there are two users logged in, the cpu share will be divided equally between the two users and so on. If only a user is existent and gets all the cpu share, it is somewhat equal to all cpu shares that the system slice and its scopes and unites get. 
+
+***See the examples below for a practical example:***
+  - ***[CPU Shares ans Weights in Systemd](/systemd/README.md/#cpu-shares-and-weights-in-systemd)***
+
+To see the cgroups, scopes and slices, you can use:
+```bash
+systemd-cgls
+```
+and to see the current cpu share and usage of slices, its processes and units, you can use:
+```bash
+systemd-cgtop
+```
+
+These normally wouldn't be used for monitoring, but it is useful to have a look at slices, scopes and units and their activity. 
+
+### Managing Dependencies
