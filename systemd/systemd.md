@@ -22,6 +22,7 @@ Systemd is a init system and system manager for Linux operating systems. It is a
       - [Managing Cgroups](#managing-cgroups)
         - [Slices](#slices)
     - [Managing Dependencies](#managing-dependencies) 
+    - [Systemd Self-Healing](#systemd-self-healing)
 
 ## Units
 - A unit is a configuration file that describes how a service, socket, device, mount point, or other resource should be managed by systemd.
@@ -262,3 +263,24 @@ systemd-cgtop
 These normally wouldn't be used for monitoring, but it is useful to have a look at slices, scopes and units and their activity. 
 
 ### Managing Dependencies
+In the ``[Unit]`` section of a unit file, you can specify dependencies for the unit. This is done with the ``Requires`` and ``After`` directives, or with the ``Wants`` and ``Before`` directives.
+
+- ``before``: Specifies that the unit should start before the listed units.
+- ``after``: Specifies that the unit should start after the listed units.
+- ``requires``: Specifies that the listed units are required for the unit to start. This alos means that if the listed units fail, the unit will fail too.
+- ``wants``: Specifies that the listed units are wanted by the unit but are not required for the unit to start. This means that if the listed units fail, the unit will still start.
+
+**Note: Using targets is a better way to manage dependencies.**
+
+***See the examples below for a practical example:***
+  - ***[Managing Dependencies in systemd - ``requires``](/systemd/README.md/#managing-dependencies-in-systemd)***
+
+### Systemd Self-Healing
+Systemd has a self-healing mechanism that can be used to restart a service if it fails. This is done with the ``Restart`` directive in the ``[Service]`` section of the unit file. This contributes to the high availability of the service.
+
+- ``Restart=always``: Restarts the service if it fails. Other options are ``on-failure``, ``on-abnormal``, ``on-success`` and ``on-abort``.
+- ``RestartSec=5``: Specifies the time to wait before restarting the service.
+
+***See the examples below for a practical example:***
+  - ***[Self-Healing in Systemd](/systemd/README.md/#self-healing-in-systemd)***
+

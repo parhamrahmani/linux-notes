@@ -25,6 +25,9 @@
         - [Managing Sockets in Systemd - Activating Cockpit Socket](#managing-sockets-in-systemd---activating-cockpit-socket)
         - [Timers in Systemd](#timers-in-systemd)
         - [CPU Shares and Weights in Systemd](#cpu-shares-and-weights-in-systemd)
+        - [Managing Dependencies in Systemd](#managing-dependencies-in-systemd)
+        - [Self-Healing in Systemd](#self-healing-in-systemd)
+        - [Summary Example](#summary-example)
 
 ## Summary
 ### Commands Review
@@ -120,6 +123,7 @@ After making changes, you can reload the service to apply the changes.
 ```bash
 sudo systemctl daemon-reload
 ```
+---
 #### Showing a Service Configuration File and Editing it
 - let's see the configuration file of sshd service
 ```bash
@@ -194,6 +198,7 @@ sudo systemctl status httpd
 ```
 The added configuration will make the service restart after a failure and wait for 5 seconds before restarting.
 
+---
 #### Listing all Available Targets and its Dependencies
 - to list the dependencies of a target
 ```bash
@@ -221,6 +226,7 @@ systemctl list-units -t target
 ```
 This will list all available targets on the system. 
 
+---
 #### Changing the Default Target from Graphical to Multi-User
 - let's change the default target to multi-user target
 ```bash
@@ -256,6 +262,7 @@ sudo systemctl start default.target
 ```
 This will start the graphical target.
 
+---
 #### Managing Services in WSL
 - We are in an Ubuntu WSL
 - let's install nginx
@@ -358,6 +365,7 @@ MemoryMax=10485760
 ```
 This means that the ``MemoryMax`` property has been set to ``10M``. The changes have been applied successfully.
 
+---
 #### Managing Sockets in Systemd - Activating Cockpit Socket
 let's list all available sockets
 ```bash
@@ -459,6 +467,7 @@ this means that the cockpit service is active and running. Because the socket is
 
 Now let's close the browser and check the status of the cockpit service again. It should be inactive because the traffic has stopped. But the status may realize this after a while.
 
+---
 #### Timers in Systemd 
 let's list all available timers
 ```bash
@@ -489,6 +498,7 @@ WantedBy=timers.target
 ```
 The ``OnBootSec`` property specifies the time after boot when the timer should be started. The ``OnUnitInactiveSec`` property specifies the time after the unit is inactive when the timer should be started. The ``RandomizedDelaySec`` property specifies the random delay before the timer is started. The ``Unit`` property specifies the service that should be started when the timer is started. The ``WantedBy`` property specifies the target where the timer should be enabled.
 
+---
 #### CPU Shares and Weights in Systemd
 
 **!! DO THIS EXAMPLE IN A VM OR A CONTAINER !!**
@@ -602,6 +612,129 @@ Everything is back to normal.
 
 ***Note: These services were operating a infinite loop in bash and this is in the ``user slice`` and when we run something in the ``user slice`` again the cpu shares of the services would change and distributed again. Now if we started services from ``system slice`` or the ``machine slice`` the cpu shares of our two services wouldn't chnage since it is in the ``user slice`` and wouldn't be relevant to the services in the ``system slice`` or the ``machine slice``.***
 
+---
+#### Managing Dependencies in Systemd
+- let's install ``httpd`` and ``vsftpd`` services
+```bash
+sudo dnf install httpd vsftpd
+```
+- let's check if the services are loaded but inactive and disabled
+```bash
+systemctl status httpd
+systemctl status vsftpd
+```
+- then edit the ``httpd`` service configuration file
+```bash
+sudo systemctl edit httpd
+```
+then we make ``httpd`` to require ``vsftpd`` service by adding following lines
+```
+### Anything between here and the comment below will become the new contents of the file
+[Unit]
+Requires=vsftpd.service
+```
+- let's check if a ``vsftpd`` service is already running (it shouldn't be)
+```bash
+ps aux | grep vsftpd
+```
+- let's start the ``httpd`` service and check if the ``vsftpd`` service is started as well
+```bash
+sudo systemctl start httpd
+ps aux | grep vsftpd
+```
+and you can see that the ``vsftpd`` service is started as well.
 
+---
+#### Self-Healing in Systemd
+- let's go to the ``httpd`` service configuration file and add the following lines
+```
+### Anything between here and the comment below will become the new contents of the file
+[Service]
+Restart=always
+RestartSec=10
+```
+- let's check the status of the ``httpd`` service
+```bash
+sudo systemctl status httpd
+```
+- let's kill the ``httpd`` service
+```bash
+sudo kill -9 2345 # <httpd_pid>
+```
+- let's check the status of the ``httpd`` service again
+```bash
+sudo systemctl status httpd
+```
+you can see that the service is restarted automatically after 10 seconds. This is the self-healing feature of systemd. The service is restarted automatically when it fails.
 
+---
+#### Summary Example
+##### Example Description
+Configure the ``httpd`` service that is started when traffic comes in on port 80. 
+##### Steps
+This means using sockets to start the service when traffic comes in on port 80. First take a look at these examples and notes:
+-  [Managing Systemd Sockts](/systemd/systemd.md/#managing-systemd-sockts)
+- [Managing Sockets in Systemd - Activating Cockpit Socket ](#managing-sockets-in-systemd---activating-cockpit-socket)
 
+- As we did prior configurations on the ``httpd`` service, we will firstly remove the configurations we made
+```bash
+sudo systemctl stop httpd
+```
+- let's remove the configurations we made
+```bash
+sudo rm -rf /etc/systemd/system/httpd.service.d
+```
+- let's remove the systemd daemon
+```bash
+sudo systemctl daemon-reload
+```
+now when we see the ``httpd`` service configuration file, we see that the configurations we previously made are removed.
+
+We don't need the ``restart`` and `restartSec` properties in the service configuration file, because that doesn't make sense with a socket-activated service. The service is started when traffic comes in on port 80, so there is no need to restart the service when it fails.
+
+- let's run the following command to see the sockets and see if there is a socket for the ``httpd`` service
+```bash
+systemctl list-units --type=socket
+```
+and we see that there is already a httpd socket.
+
+- let's overview sockets related to the ``httpd`` service
+```bash
+systemctl cat httpd.socket
+```
+and we see this
+```
+[Socket]
+ListenStream=80
+NoDelay=true
+DeferAcceptSec=30
+```
+we can see that the ``httpd`` service is started when traffic comes in on port 80. The ``ListenStream`` property specifies the IP address and port number on which the socket should listen for TCP traffic. The ``NoDelay`` property specifies that the socket should not delay sending data. The ``DeferAcceptSec`` property specifies the time to wait before accepting a connection.
+
+- let's enable the ``httpd`` socket
+```bash
+sudo systemctl enable httpd.socket
+```
+
+- let's send something over port 80 to start the ``httpd`` service. (it may need root privileges)
+```bash
+echo "Hello World" > /var/www/html/index.html
+```
+now since we have the ``httpd`` service socket enabled, when we send traffic to port 80, the ``httpd`` service will start automatically.
+```bash
+curl http://localhost:80
+```
+this will return the content of the ``index.html`` file.
+```
+Hello World!
+```
+this means that the ``httpd`` service is started when traffic comes in on port 80. This is how you can configure a service to start when traffic comes in on a specific port.
+
+```bash
+sudo systemctl status httpd
+```
+we see in the status this line:
+```
+TriggeredBy: ● httpd.socket
+```
+this means that the ``httpd`` service is started when traffic comes in on port 80.
